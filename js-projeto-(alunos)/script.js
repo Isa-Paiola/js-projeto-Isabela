@@ -1,34 +1,34 @@
-//Controle do menu mobile 
+ // Controle do menu mobile
 const menuIcon = document.querySelector('#menu-icon');
 const navList = document.querySelector('.navlist');
 
-menuIcon.addEventListener('click', () => {
+menuIcon.addEventListener('click',() => {
     menuIcon.classList.toggle('bx-x');
     navList.classList.toggle('open');
 
-    //bloquear o scroll quando o menu esiver aberto
+    // Bloquear o scroll quando o menu estiver aberto
     document.body.style.overflow = navList.classList.contains('open') ? 'hidden' : 'auto';
 });
 
-//fechar menu ao clicar nos links
+// Fechar menu ao clicar nos links
 document.querySelectorAll('.navlist a').forEach(link => {
-    link.addEventListener('click' , () => {
+    link.addEventListener('click', () => {
         menuIcon.classList.remove('bx-x');
         navList.classList.remove('open');
         document.body.style.overflow = 'auto';
     });
 });
 
-//Fechar ao rolar a pagina
+// Fechar ao rolar a página
 window.addEventListener('scroll', () => {
-    if (navList.classList.contains('open')){
+    if(navList.classList.contains('open')){
         menuIcon.classList.remove('bx-x');
         navList.classList.remove('open');
         document.body.style.overflow = 'auto';
     }
 });
 
-// ==== Navegação ativa ====
+// ===== Navegação ativa ====
 // Seleciona todos os links de navegação
 const navLinks = document.querySelectorAll('.navlist a');
 
@@ -41,44 +41,41 @@ function activeLink(){
 // Adiciona um evento de clique no link de navegação
 navLinks.forEach(item => item.addEventListener('click', activeLink));
 
-// alternar modo claro e modo escuro 
-// função para alterar entre os temas 
+//  =========  Alternar modo claro / modo escuro
+// Função para alterar entre os temas
 function toggleMode(){
     const html = document.documentElement;
     html.classList.toggle('light');
 
-    // salva o tema escolhido no LOcalStorage
+    // Salva o tema escolhido no LocalStorage
     const mode = html.classList.contains('light') ? 'light' : 'dark';
     localStorage.setItem('theme', mode);
 
-    // altrar aparência do título 
+    // Alterar aparência do título
     updateTextColor();
 }
 
-// função que altera a cor do texto de acordo com o tema
+// Função que altera a cor do texto de acordo com o tema
 function updateTextColor(){
-    currentColor = document.documentElement.classList.contains('light') ?
-    'black' : '#fff';
+    currentColor = document.documentElement.classList.contains('light') ? 'black' : '#fff';
     titleElement.style.color = currentColor;
 }
 
-// carrega o tema salvo no LocalStorage ao carregar a página
+// Carrega o tema salvo no LocalStorage ao caregar a página
 const savedTheme = localStorage.getItem('theme');
-if(savedTheme){
-    document.documentElement.classList.toggle('light', savedTheme === 
-    'light');
+if (savedTheme){
+    document.documentElement.classList.toggle('light', savedTheme === 'light');
 }
 
-// animação do título principal
-// seleciona o elemento 'titulo' e define as variaveis para animação
+// ==== Animação do título principal
+// Seleciona o elemento 'título' e define as variáveis para animação
 const titleElement = document.querySelector('#name');
-const text = "  Isabela Paiola";
+const text = "Isabela Paiola";
 let index = 0;
 let isTyping = true;
-let currentColor = document.documentElement.classList.contains('light') ?
-'black' : '#fff';
+let currentColor = document.documentElement.classList.contains('light') ? 'black' : '#fff';
 
-// função apara animar o texto (digitando e apagando)
+// função para animar o texto (digitando e apagando)
 function animateText(){
     if(isTyping){
         if(index < text.length){
@@ -86,7 +83,7 @@ function animateText(){
             index ++;
         }else {
             isTyping = false;
-        }
+        }        
     } else {
         if (index > 1){
             titleElement.textContent = text.slice(0, index -1);
@@ -94,51 +91,48 @@ function animateText(){
         } else {
             isTyping = true;
             // alterna a cor entre preto e laranja
-            currentColor = currentColor === (document.documentElement.
-            classList.contains('light') ? 'black' : '#fff') ? '#d80a7b' :
-            (document.documentElement.classList('light') ? 'black' 
-            : '#fff');
+            currentColor = currentColor === (document.documentElement.classList.contains('light') ? 'black' : '#fff') ? '#d80a7b' : (document.documentElement.classList.contains('light') ? 'black' : '#fff');
             titleElement.style.color = currentColor;
         }
     }
     setTimeout(animateText, 300);
 }
 
-// inicia a animação quando carrega a página
+// inicia a animação quando carregar a página
 document.addEventListener('DOMContentLoaded', animateText);
 updateTextColor();
 
-// Animação da seção home
-// Seleciona a seção home e aplica uma animação fade in
+// ================= ANIMAÇÃO DA SEÇÃO HOME 
+// Seleciona a seção home e aplica uma animação de fade-in
 const homeSection = document.querySelector('#home');
 homeSection.style.opacity = '0';
-homeSection.style.transform = 'translateY(20px)';
+homeSection.style.transform = 'translateY(200px)';
 homeSection.style.transition = 'opacity 1s ease, transform 1s ease';
 
 setTimeout(() => {
-    homeSection.style.opacity = '1';
-    homeSection.style.transform = 'translateY(0)';
+  homeSection.style.opacity = '1';
+  homeSection.style.transform = 'translateY(0)';
 }, 100);
 
-// Animação das seções
-// Seleciona todas as seções e aplica animações de entrada
-const sections  = document.querySelectorAll('section');
+// ANIMAÇÃO DAS SEÇÕES
+// seleciona todas as seções e aplica animações de entrada
+const sections = document.querySelectorAll('section');
 
-sections.forEach((section, index) =>{
+sections.forEach((section, index) => {
     section.style.opacity = '0';
-    section.style.transition = 'opacity 1s, transform 1s';
+    section.style.transition = 'opacity 1s transform 1s';
 
-    // Aplica diferentes transformações com base no índice da seção
+    // aplica diferentes transformações com base no índice da seção
     if (index !== 0){
-        if (index === 1) section.style.transform = 'translateY(100px)';
-        else if (index === 2) section.style.transform = 'scale(0.8';
+        if (index === 1) section.style.transform = 'trasnslateY(100px)';
+        else if (index === 2) section.style.transform = 'scale(0.8)';
         else if (index === 3) section.style.transform = 'rotateY(90deg)';
-    }
+    } 
 });
 
-// Observer para animar as seções ao rolar a página
-const observer = new IntersectionObserver((entries) =>{
-    entries.forEach(entry =>{
+// observer para animar as seções ao rolar a página
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
         if (entry.isIntersecting){
             entry.target.style.opacity = '1';
             entry.target.style.transform = 'none';
@@ -146,19 +140,18 @@ const observer = new IntersectionObserver((entries) =>{
     });
 });
 
-// Observar cada seção para aplicar a animação
+// observar cada seção para aplicar a animação
 sections.forEach((section) => observer.observe(section));
 
-// Botão de voltar ao topo
-// Adiciona um evento de clique ao botão de voltar ao topo
-document.querySelector('.top a').addEventListener('click', (e) =>{
+// BOTÃO DE VOLTAR AO TOPO
+// adiciona um evento de clique ao notão de voltar ao topo
+document.querySelector('.top a').addEventListener('click', (e) => {
     e.preventDefault();
-    window.SecurityPolicyViolationEvent({top: 0, behavior: 'smooth'});
-    // Rola suavemente para o topo da página
+    window.scrollTo({ top: 0, behavior: 'smooth'}); 
 });
 
-// ================= CARROSSEL DE PROJETOS =================
-// Seleciona os elementos do carrossel
+// ====== CARROSSEL DE PROJETOS =====
+//seleciona os elementos do carrosel
 const carouselSlides = document.querySelector('.carousel-slides');
 const slides = document.querySelectorAll('.carousel-slide');
 const prevButton = document.querySelector('.carousel-button.prev');
@@ -167,25 +160,25 @@ let currentSlide = 0;
 let autoSlideInterval;
 
 // Função para exibir o slide atual
-function showSlide(slideIndex) {
+function showSlide(slideIndex){
     slides.forEach(slide => {
         slide.classList.remove('active');
         slide.style.display = 'none';
     });
 
     // Ajusta o índice do slide para garantir que ele esteja dentro dos limites
-    if (slideIndex < 0) currentSlide = slides.length - 1;
+    if(slideIndex <0) currentSlide = slides.length - 1;
     else if (slideIndex >= slides.length) currentSlide = 0;
     else currentSlide = slideIndex;
 
-    // Exibe o slide atual
+    // exibe o slide atual
     slides[currentSlide].classList.add('active');
     slides[currentSlide].style.display = 'flex';
     updateSlidePosition();
 }
 
-// Função para atualizar a posição do carrossel
-function updateSlidePosition() {
+// Função para atualizar a posição do carrosel
+function updateSlidePosition(){
     const slideWidth = slides[0].offsetWidth;
     carouselSlides.style.transform = `translateX(-${currentSlide * slideWidth}px)`;
 }
@@ -197,52 +190,53 @@ function nextSlide() {
 }
 
 // Função para voltar ao slide anterior
-function prevSlide() {
+function prevSlide(){
     showSlide(currentSlide - 1);
     resetAutoSlide(); // Reinicia o intervalo de transição automática
 }
 
 // Função para iniciar a transição automática dos slides
-function startAutoSlide() {
-    autoSlideInterval = setInterval(nextSlide, 5000); // Avança o slide a cada 5 segundos
+function startAutoSlide(){
+    autoSlideInterval = setInterval(nextSlide, 5000); //Avança o slide a cada 5 segundos
 }
 
 // Função para reiniciar a transição automática
-function resetAutoSlide() {
+function resetAutoSlide(){
     clearInterval(autoSlideInterval);
     startAutoSlide();
 }
 
-// Adiciona eventos de clique aos botões de navegação do carrossel
+// Adiciona evento de clique aos botões de navegação do carrosel
 nextButton.addEventListener('click', nextSlide);
 prevButton.addEventListener('click', prevSlide);
 
-// Inicializa o carrossel ao carregar a página
+// Inicaliza o carrosel ao carregar a página
 window.addEventListener('load', () => {
     showSlide(currentSlide);
     startAutoSlide();
+
+    // Atualiza a posição do carrosel ao redimensionar a janela
+    window.addEventListener('resize', () => {
+        updateSlidePosition();
+    });
 });
 
-// Atualiza a posição do carrossel ao redimensionar a janela
-window.addEventListener('resize', () => {
-    updateSlidePosition();
-});
-
-// Pausa a transição automática ao passar o mouse sobre o carrossel
-carouselSlides.parentElement.addEventListener('mouseenter', () => {
+// Pausa a transição automática ao passar o mouse sobre o carrosel
+carouselSlides.parentElement.addEventListener('mouseenter', () =>{
     clearInterval(autoSlideInterval);
 });
 
 // Retoma a transição automática ao remover o mouse do carrossel
 carouselSlides.parentElement.addEventListener('mouseleave', startAutoSlide);
 
-// ================= FORMULÁRIO DE CONTATO =================
+
+// FORMULÁRIO DE CONTATO
 // Seleciona o formulário de contato e a mensagem de agradecimento
 const contactForm = document.getElementById('contactForm');
 const thankYouMessage = document.getElementById('thankYouMessage');
 
 // Adiciona um evento de envio ao formulário
-contactForm.addEventListener('submit', (e) => {
+contactForm.addEventListener('submit', (e) =>{
     e.preventDefault();
     thankYouMessage.style.display = 'block'; // Exibe a mensagem de agradecimento
 
@@ -251,11 +245,11 @@ contactForm.addEventListener('submit', (e) => {
     fetch(contactForm.action, {
         method: 'POST',
         body: formData,
-        headers: { 'Accept': 'application/json' }
+        headers: {'Accept': 'application/json'}
     })
     .then(response => {
         if (response.ok) {
-            setTimeout(() => window.location.reload(), 2000); // Recarrega a página após 2 segundos
+            setTimeout(() => window.location.reload(), 2000); //Recarrega a página após 2 segundos  
         } else {
             alert('Erro ao enviar formulário. Tente novamente.');
         }
@@ -263,23 +257,23 @@ contactForm.addEventListener('submit', (e) => {
     .catch(() => alert('Erro na conexão. Tente novamente.'));
 });
 
-// ================= ANIMAÇÃO DA SEÇÃO "SOBRE MIM" =================
+// ANIMAÇÃO SOBRE MIM
 // Seleciona a seção "Sobre Mim"
 const aboutSection = document.querySelector('.about');
 
 // Função para verificar se a seção está visível na tela
-function checkAboutVisibility() {
+function checkAboutVisibility(){
     const rect = aboutSection.getBoundingClientRect();
-    const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+    const windowHeight = windowHeight || document.documentElement.clientHeight;
 
     // Verifica se a seção está dentro da área visível da tela
     if (rect.top <= windowHeight * 0.75 && rect.bottom >= 0) {
-        aboutSection.classList.add('visible'); // Adiciona a classe "visible"
-        window.removeEventListener('scroll', checkAboutVisibility); // Remove o listener após a animação
+        aboutSection.classList.add('visible'); 
+        window.removeEventListener('scroll', checkAboutVisibility);
     }
 }
 
-// Adiciona um listener para o evento de scroll
+// Adiciona um listener para o evento scroll
 window.addEventListener('scroll', checkAboutVisibility);
 
 // Verifica a visibilidade ao carregar a página (caso a seção já esteja visível)
