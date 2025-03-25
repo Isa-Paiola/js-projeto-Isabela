@@ -72,3 +72,42 @@ if(savedTheme){
     document.documentElement.classList.toggle('light', savedTheme === 
     'light');
 }
+
+// animação do título principal
+// seleciona o elemento 'titulo' e define as variaveis para animação
+const titleElement = document.querySelector('#name');
+const text = "Isabela Paiola";
+let index = 0;
+let isTyping = true;
+let currentColor = document.documentElement.classList.contains('light') ?
+'black' : '#fff';
+
+// função apara animar o texto (digitando e apagando)
+function animateText(){
+    if(isTyping){
+        if(index < text.length){
+            titleElement.textContent = text.slice(0, index + 1);
+            index ++;
+        }else {
+            isTyping = false;
+        }
+    } else {
+        if (index > 1){
+            titleElement.textContent = text.slice(0, index -1);
+            index --;
+        } else {
+            isTyping = true;
+            // alterna a cor entre preto e laranja
+            currentColor = currentColor === (document.documentElement.
+            classList.contains('light') ? 'black' : '#fff') ? '#C94c16' :
+            (document.documentElement.classList('light') ? 'black' 
+            : '#fff');
+            titleElement.style.color = currentColor;
+        }
+    }
+    setTimeout(animateText, 300);
+}
+
+// inicia a animação quando carrega a página
+document.addEventListener('DOMContentLoaded', animateText);
+updateTextColor();
