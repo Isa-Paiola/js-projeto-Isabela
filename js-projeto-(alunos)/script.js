@@ -45,3 +45,30 @@ function activeLink(){
 // adiciona um evento de clique no link de nagegação 
 navLinks.forEach(item => item.addEventListener('click', activeLink));
 
+// alternar modo claro e modo escuro 
+// função para alterar entre os temas 
+function toggleMode(){
+    const html = document.documentElement;
+    html.classList.toggle('light');
+
+    // salva o tema escolhido no LOcalStorage
+    const mode = html.classList.contains('light') ? 'light' : 'dark';
+    localStorage.setItem('theme', mode);
+
+    // altrar aparência do título 
+    updateTextColor();
+}
+
+// função que altera a cor do texto de acordo com o tema
+function updateTextColor(){
+    currentColor = document.documentElement.classList.contains('light') ?
+    'black' : '#fff';
+    titleElement.style.color = currentColor;
+}
+
+// carrega o tema salvo no LocalStorage ao carregar a página
+const savedTheme = localStorage.getItem('theme');
+if(savedTheme){
+    document.documentElement.classList.toggle('light', savedTheme === 
+    'light');
+}
