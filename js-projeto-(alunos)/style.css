@@ -46,10 +46,10 @@
 
 .light {
   --bg-color: #ffffff;
-  --second-bg-color: #C94C16;
+  --second-bg-color: #f68dc5;
   
   --text-color: #000000;
-  --second-text-color: #FF4D00;
+  --second-text-color: #d80a7b;
   --card-bg-color: hsla(18, 80%, 44%, 1);
 
   --highlight-color: rgba(0, 0, 0, 0.25);
@@ -69,14 +69,14 @@
   --button-text-color-hover: #000000;
 
   --bg-contact: url("./img/bg-contact-white.png");
-  --border-form: 2px solid hsla(18, 80%, 44%, 1);
+  --border-form: 2px solid #d80a7b;
   --bg-form: rgba(255, 255, 255, 0.726);
 
   --color-social-media: #C94C16;
 }
 
 body {
-  background: var(--bg-color);
+  background: #FDFCF7;
   color: var(--text-color);
   font-family: var(--first-font);
 }
@@ -442,7 +442,7 @@ img.balls {
 }
 
 .line {
-  border: 2px #FF4D00 solid;
+  border: 2px #d80a7b solid;
   width: 17rem;
   margin-bottom: 1rem;
 }
@@ -488,6 +488,7 @@ img.balls {
   border-radius: 8px;
   transition: all 0.4s ease;
   color: white;
+  background-color: #9a1b61;
 }
 
 .card p {
@@ -498,7 +499,7 @@ img.balls {
 
 .card:hover {
   cursor: pointer;
-  background-color: #FF4D00;
+  background-color: #d80a7b;
   transform: translateY(-10px);
 }
 
@@ -640,6 +641,7 @@ img.balls {
   align-items: center;
   justify-content: center;
   box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  background-color: #9a1b61;
 }
 
 .carousel-button:hover {
@@ -657,7 +659,7 @@ img.balls {
 
 /* --------------- contact ----------------------- */
 .contact {
-  background-image: var(--bg-contact);
+  background-image: url(img/imagemdeFundo.jpg);
   background-position: center;
   background-size: cover;
   display: flex;
